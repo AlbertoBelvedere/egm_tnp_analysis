@@ -157,11 +157,13 @@ TCanvas* PlotTH1(TH1* h, int logX, int logY, int pureMC=0, TString bin_text="", 
     int square=1;
     TCanvas* canvas = set_canvas(name, frame_text, square);
     canvas->cd();
-    TString draw_op="HIST";
+    h->SetMarkerStyle(20);
+    h->SetMarkerSize(0.7);
+    TString draw_op="E1X0";
     h->Draw(draw_op);
     h->SetStats(0);
     h->SetTitle("");
-    h->SetLineColor(colours[1]);
+    h->SetLineColor(colours[0]);
     h->SetMaximum(h->GetMaximum()*1.2);
     //h->GetYaxis()->SetTitle(" Events / 0.02 ");
 /*for more histo in the same plot you should pass vector<TH1*> h instead of only one histogram and instead of h in the above lines you should have h[0]
@@ -197,8 +199,8 @@ TCanvas* PlotTH1(TH1* h, int logX, int logY, int pureMC=0, TString bin_text="", 
     
     if(logY==1) gPad->SetLogy();
     if(logX==1) gPad->SetLogx();
-    int iPeriod = 5;
-    if(pureMC==1)  iPeriod = 10;
+    //int iPeriod = 5;
+    //if(pureMC==1)  iPeriod = 10;
     //CMS_lumi(canvas, iPeriod, 11); 
     canvas->RedrawAxis();
     canvas->Update();

@@ -25,6 +25,7 @@ void doRF(TString infilename, TString outfilename, int lowbin){
 	Float_t tag_Ele_trigMVA;
 	Float_t el_sc_eta;
 	Float_t el_pt;
+	Float_t pair_mass;
 	
 	TBranch	*b_el_IsoMVA94XV2; 
 	TBranch	*b_tag_Ele_pt; 
@@ -34,6 +35,7 @@ void doRF(TString infilename, TString outfilename, int lowbin){
 	TBranch	*b_tag_Ele_trigMVA; 
 	TBranch	*b_el_sc_eta; 
 	TBranch	*b_el_pt; 
+	TBranch	*b_pair_mass; 
 
 	tree->SetBranchAddress("el_IsoMVA94XV2", &el_IsoMVA94XV2, &b_el_IsoMVA94XV2);
 	tree->SetBranchAddress("tag_Ele_pt", &tag_Ele_pt, &b_tag_Ele_pt);
@@ -43,16 +45,19 @@ void doRF(TString infilename, TString outfilename, int lowbin){
 	tree->SetBranchAddress("tag_Ele_trigMVA", &tag_Ele_trigMVA, &b_tag_Ele_trigMVA);
 	tree->SetBranchAddress("el_sc_eta", &el_sc_eta, &b_el_sc_eta);
 	tree->SetBranchAddress("el_pt", &el_pt, &b_el_pt);
+	tree->SetBranchAddress("pair_mass", &pair_mass, &b_pair_mass);
 
 	TH1::SetDefaultSumw2();
 	int nbin;
 
 	TH1F* h_IsoMVA94XV2;
+	TH1F* h_pair_mass;
 
 	if(lowbin == -10) nbin = 100;
 	else nbin = 20;
 
 	h_IsoMVA94XV2 = new TH1F("IsoMVA94XV2", "", nbin, lowbin, 1);
+	h_pair_mass = new TH1F("pair_mass", "", 60, 60, 120);
 
 	Long64_t nentries = tree->GetEntriesFast();
 	for(int jEntry = 0; jEntry < nentries; ++jEntry){
@@ -70,6 +75,7 @@ void doRF(TString infilename, TString outfilename, int lowbin){
 
 		//Filling histogram
 		h_IsoMVA94XV2->Fill(el_IsoMVA94XV2);
+		h_pair_mass->Fill(pair_mass);
 	}
 
 	gStyle->SetOptStat(0000);
@@ -79,6 +85,7 @@ void doRF(TString infilename, TString outfilename, int lowbin){
 	outfile = new TFile("histofiles/"+outfilename, "RECREATE");
 	outfile->cd();
 	h_IsoMVA94XV2->Write("h_IsoMVA94XV2");
+	h_pair_mass->Write("h_pair_mass");
 	outfile->Write();
 	outfile->Close();
 	
