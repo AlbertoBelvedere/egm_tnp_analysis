@@ -193,7 +193,7 @@ Run3_postleak = {
 #                                       isMC = True, nEvts =  -1 ),
 
 
-    'data_Run3E' : tnpSample('data_Run3E' , eosRun3 + 'Run2022E-22Sep2023-v1/EGamma/crab_Run2022E-22Sep2023-v1/231027_143318/0000/merged_Run2022E-22Sep2023-v1_up.root' , lumi = 5.62),
+    'data_Run3E' : tnpSample('data_Run3E' , eosRun3 + 'Run2022E-22Sep2023-v1/EGamma/crab_Run2022E-22Sep2023-v1/231027_143318/0000/merged_Run2022E-22Sep2023-v1_up.root' , lumi = 26.6),
     'data_Run3F' : tnpSample('data_Run3F' , '/eos/cms/store/group/phys_egamma/ec/tnpTuples/rsalvatico/ntuples_Run3/PromptData2022/Run2022F.root' , lumi = 10),
     'data_Run3G' : tnpSample('data_Run3G' , '/eos/cms/store/group/phys_egamma/ec/tnpTuples/rsalvatico/ntuples_Run3/PromptData2022/Run2022G.root' , lumi = 11.1),
 }
