@@ -41,14 +41,15 @@ tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
     'data'   : tnpSamples.Run3_postleak['data_Run3E'].clone(),
+    'data2'   : tnpSamples.Run3_postleak['data_Run3F'].clone(),
     'mcNom'  : tnpSamples.Run3_postleak['DY_madgraph'].clone(),
     #'mcAlt'  : tnpSamples.Run3['DY_amcatnloext'].clone(),
     'tagSel' : tnpSamples.Run3_postleak['DY_madgraph'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.Run3_postleak['data_Run3F'] )
-samplesDef['data'].add_sample( tnpSamples.Run3_postleak['data_Run3G'] )
+#samplesDef['data'].add_sample( tnpSamples.Run3_postleak['data_Run3F'] )
+samplesDef['data2'].add_sample( tnpSamples.Run3_postleak['data_Run3G'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
