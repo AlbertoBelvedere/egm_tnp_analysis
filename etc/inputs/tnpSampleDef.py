@@ -17,6 +17,7 @@ eosUL2017 = '/eos/cms/store/group/phys_egamma/tnpTuples/tomc/2020-05-20/UL2017/m
 eosUL2018 = '/eos/cms/store/group/phys_egamma/tnpTuples/tomc/2020-05-20/UL2018/merged/'
 #Run3
 eosRun3 = '/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/'
+eos2023 = '/eos/cms/store/group/phys_egamma/ec/tnpTuples/Prompt2023/'
 
 
 ReReco2017 = {
@@ -176,9 +177,7 @@ Run3_preleak = {
 #                                       isMC = True, nEvts =  -1 ),
 
 
-    'data_Run3B' : tnpSample('data_Run3B' , eosRun3 + 'ntuple_Run3_data_2022B_EleID_PhoID/data/EGamma/crab_Egamma2022B_EleID_PhoID/221012_155735/0000/merged.root' , lumi = 0.086),
-    'data_Run3C' : tnpSample('data_Run3C' , eosRun3 + 'ntuple_Run3_data_2022C_EleID_PhoID/data/EGamma/crab_Egamma2022C_EleID_PhoID/221014_145533/0000/merged.root' , lumi = 4.45),
-    'data_Run3D' : tnpSample('data_Run3D' , eosRun3 + 'ntuple_Run3_data_2022D_EleID_PhoID/data/EGamma/crab_Egamma2022D_EleID_PhoID/221014_145636/0000/merged.root' , lumi = 0.912),
+    'data_Run3BCD' : tnpSample('data_Run3BCD' , '/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/Run2022_BCD_ReReco/merged_Run2022_BCD_ReReco_up.root' , lumi = 7.94),
 }
 
 Run3_postleak = {
@@ -193,7 +192,32 @@ Run3_postleak = {
 #                                       isMC = True, nEvts =  -1 ),
 
 
-    'data_Run3E' : tnpSample('data_Run3E' , eosRun3 + 'Run2022E-22Sep2023-v1/EGamma/crab_Run2022E-22Sep2023-v1/231027_143318/0000/merged_Run2022E-22Sep2023-v1_up.root' , lumi = 26.6),
-    'data_Run3F' : tnpSample('data_Run3F' , '/eos/cms/store/group/phys_egamma/ec/tnpTuples/rsalvatico/ntuples_Run3/PromptData2022/Run2022F.root' , lumi = 10),
-    'data_Run3G' : tnpSample('data_Run3G' , '/eos/cms/store/group/phys_egamma/ec/tnpTuples/rsalvatico/ntuples_Run3/PromptData2022/Run2022G.root' , lumi = 11.1),
+    'data_Run3EFG' : tnpSample('data_Run3EFG' , eosRun3 + 'Run2022_EReReco_FG_PromptReco/merged_Run2022_EReReco_FG_PromptReco_updated.root' , lumi = 26.6),
 }
+
+
+Run3_2023_pre = {
+    'DY_madgraph'              : tnpSample('DY_madgraph',
+                                       eos2023 + 'DY_LO_2023preBPIX.root',
+                                       isMC = True, nEvts =  -1 ),
+    'DY_amcatnlo'                 : tnpSample('DY_amcatnlo',
+                                       eos2023 + 'DY_NLO_2023preBPIX.root',
+                                       isMC = True, nEvts =  -1 ),
+
+
+    'data_2023' : tnpSample('data_2023' , eos2023 + 'data_2023C.root' , lumi = 18.0),
+}
+
+Run3_2023_post = {
+    'DY_madgraph'              : tnpSample('DY_madgraph',
+                                       eos2023 + 'DY_LO_2023postBPIX.root',
+                                       isMC = True, nEvts =  -1 ),
+    'DY_amcatnlo'                 : tnpSample('DY_amcatnlo',
+                                       eos2023 + 'DY_NLO_2023postBPIX.root',
+                                       isMC = True, nEvts =  -1 ),
+
+
+    'data_2023' : tnpSample('data_2023' , eos2023 + 'data_2023D.root' , lumi = 9.52),
+}
+
+
