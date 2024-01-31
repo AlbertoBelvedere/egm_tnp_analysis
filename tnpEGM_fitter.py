@@ -22,7 +22,6 @@ parser.add_argument('--doPlot'     , action='store_true'  , help = 'plotting')
 parser.add_argument('--sumUp'      , action='store_true'  , help = 'sum up efficiencies')
 parser.add_argument('--iBin'       , dest = 'binNumber'   , type = int,  default=-1, help='bin number (to refit individual bin)')
 parser.add_argument('--flag'       , default = None       , help ='WP to test')
-parser.add_argument('--flag2'       , default = None       , help ='WP to test')
 parser.add_argument('settings'     , default = None       , help = 'setting file [mandatory]')
 
 
@@ -104,10 +103,7 @@ if args.createHists:
             var = { 'name' : 'pair_mass', 'nbins' : 80, 'min' : 50, 'max': 130 }
             if sample.mcTruth:
                 var = { 'name' : 'pair_mass', 'nbins' : 80, 'min' : 50, 'max': 130 }
-	    if(sampleType == "data2"):
-            	tnpHist.makePassFailHistograms( sample, tnpConf.flags[args.flag2], tnpBins, var )
-	    else:
-            	tnpHist.makePassFailHistograms( sample, tnpConf.flags[args.flag], tnpBins, var )
+            tnpHist.makePassFailHistograms( sample, tnpConf.flags[args.flag], tnpBins, var )
     
     pool = Pool()
     pool.map(parallel_hists, tnpConf.samplesDef.keys())
@@ -202,8 +198,8 @@ if args.sumUp:
         'tagSel'      : None
         }
 
-    #if not tnpConf.samplesDef['mcAlt' ] is None:
-    #    info['mcAlt'    ] = tnpConf.samplesDef['mcAlt' ].histFile
+    if not tnpConf.samplesDef['mcAlt' ] is None:
+        info['mcAlt'    ] = tnpConf.samplesDef['mcAlt' ].histFile
     if not tnpConf.samplesDef['tagSel'] is None:
         info['tagSel'   ] = tnpConf.samplesDef['tagSel'].histFile
 

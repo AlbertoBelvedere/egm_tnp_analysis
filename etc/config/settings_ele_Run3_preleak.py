@@ -18,6 +18,12 @@ flags = {
     'passingMVA94XwpLisoV2'    : '(passingMVA94XwpLisoV2 == 1)',
     'passingMVA94XwpLnoisoV2'  : '(passingMVA94XwpLnoisoV2 == 1)',
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
+    'passingCutBasedVeto122XV1'    : '(passingCutBasedVeto122XV1 == 1)',
+    'passingCutBasedLoose122XV1'    : '(passingCutBasedLoose122XV1 == 1)',
+    'passingCutBasedMedium122XV1'    : '(passingCutBasedMedium122XV1 == 1)',
+    'passingCutBasedTight122XV1'    : '(passingCutBasedTight122XV1 == 1)',
+    'passingMVA122Xwp80isoV1'    : '(passingMVA122Xwp80isoV1 == 1)',
+    'passingMVA122Xwp90isoV1'    : '(passingMVA122Xwp90isoV1 == 1)',
     }
 
 baseOutDir = 'results/Run3_preleak/tnpEleID/'
@@ -31,15 +37,15 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    'data'   : tnpSamples.Run3['data_Run3B'].clone(),
-    'mcNom'  : tnpSamples.Run3['DY_madgraph'].clone(),
-    #'mcAlt'  : tnpSamples.Run3['DY_amcatnloext'].clone(),
-    'tagSel' : tnpSamples.Run3['DY_madgraph'].clone(),
+    'data'   : tnpSamples.Run3_preleak['data_Run3BCD'].clone(),
+    'mcNom'  : tnpSamples.Run3_preleak['DY_madgraph'].clone(),
+    #'mcAlt'  : tnpSamples.Run3_preleak['DY_amcatnloext'].clone(),
+    'tagSel' : tnpSamples.Run3_preleak['DY_madgraph'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.Run3['data_Run3C'] )
-samplesDef['data'].add_sample( tnpSamples.Run3['data_Run3D'] )
+#samplesDef['data'].add_sample( tnpSamples.Run3['data_Run3C'] )
+#samplesDef['data'].add_sample( tnpSamples.Run3['data_Run3D'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -61,13 +67,13 @@ if not samplesDef['tagSel'] is None:
 
 ## set MC weight, can use several pileup rw for different data taking periods
 #weightName = 'weights_data_Run2022_B-G.totWeight'
-weightName = 'weights_data_Run2022_inclusive.totWeight'
+weightName = 'weights_data_Run2022BCD.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 #if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/ec/fmausolf/EGM_comm/124X_preLeak_DYTo2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/DYto2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8/124X_preLeak_DYTo2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/230124_110236/0000/DY_powheg_ele.pu.puTree_1.root')
-#if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/eos/cms/store/group/phys_egamma/swmukher/UL2017/PU_miniAOD/DY_amcatnloext_ele.pu.puTree.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/ec/fmausolf/EGM_comm/124X_preLeak_DYTo2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/DYto2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8/124X_preLeak_DYTo2E_M-50_NNPDF31_TuneCP5_13p6TeV-powheg-pythia8_EleID_PhoID/230124_110236/0000/DY_powheg_ele.pu.puTree_1.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/BCD_2022/mcRun3_130X_2022_realistic_ele_69p2mb.pu.puTree.root')
+#if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/BCD_2022/mcRun3_130X_2022_realistic_ele_69p2mb.pu.puTree.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/BCD_2022/mcRun3_130X_2022_realistic_ele_69p2mb.pu.puTree.root')
 
 #############################################################
 ########## bining definition  [can be nD bining]
@@ -84,16 +90,16 @@ biningDef = [
 cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
 additionalCuts = { 
-    0 : 'tag_Ele_trigMVA > 0.92 ',
-    1 : 'tag_Ele_trigMVA > 0.92 ',
-    2 : 'tag_Ele_trigMVA > 0.92 ',
-    3 : 'tag_Ele_trigMVA > 0.92 ',
-    4 : 'tag_Ele_trigMVA > 0.92 ',
-    5 : 'tag_Ele_trigMVA > 0.92 ',
-    6 : 'tag_Ele_trigMVA > 0.92 ',
-    7 : 'tag_Ele_trigMVA > 0.92 ',
-    8 : 'tag_Ele_trigMVA > 0.92 ',
-    9 : 'tag_Ele_trigMVA > 0.92 '
+    0 : 'tag_Ele_Iso122X > 0.90 ',
+    1 : 'tag_Ele_Iso122X > 0.90 ',
+    2 : 'tag_Ele_Iso122X > 0.90 ',
+    3 : 'tag_Ele_Iso122X > 0.90 ',
+    4 : 'tag_Ele_Iso122X > 0.90 ',
+    5 : 'tag_Ele_Iso122X > 0.90 ',
+    6 : 'tag_Ele_Iso122X > 0.90 ',
+    7 : 'tag_Ele_Iso122X > 0.90 ',
+    8 : 'tag_Ele_Iso122X > 0.90 ',
+    9 : 'tag_Ele_Iso122X > 0.90 '
 }
 
 #### or remove any additional cut (default)
@@ -126,7 +132,7 @@ tnpParAltSigFit_addGaus = [
          
 tnpParAltBkgFit = [
     "meanP[-0.0,-5.0,5.0]","sigmaP[0.9,0.5,5.0]",
-    "meanF[-0.0,-5.0,5.0]","sigmaF[0.9,0.5,5.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[0.5,0.5,5.0]",
     "alphaP[0.,-5.,5.]",
     "alphaF[0.,-5.,5.]",
     ]

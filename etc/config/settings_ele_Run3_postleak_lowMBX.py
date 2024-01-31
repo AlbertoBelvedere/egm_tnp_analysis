@@ -29,7 +29,7 @@ flags = {
     'passingMVARun3Xwp90isoV1'    : '(passingMVARun3Xwp90isoV1 == 1)',
     }
 
-baseOutDir = 'results/Run3_postleak/tnpEleID/'
+baseOutDir = 'results/Run3_postleak_new_lowMBX_notrigMVA/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -40,7 +40,8 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    'data'   : tnpSamples.Run3_postleak['data_Run3EFG'].clone(),
+    'data'   : tnpSamples.Run3_postleak['data_Run3E'].clone(),
+    'data2'   : tnpSamples.Run3_postleak['data_Run3F'].clone(),
     'mcNom'  : tnpSamples.Run3_postleak['DY_madgraph'].clone(),
     #'mcAlt'  : tnpSamples.Run3['DY_amcatnloext'].clone(),
     'tagSel' : tnpSamples.Run3_postleak['DY_madgraph'].clone(),
@@ -48,7 +49,7 @@ samplesDef = {
 
 ## can add data sample easily
 #samplesDef['data'].add_sample( tnpSamples.Run3_postleak['data_Run3F'] )
-#samplesDef['data'].add_sample( tnpSamples.Run3_postleak['data_Run3G'] )
+samplesDef['data2'].add_sample( tnpSamples.Run3_postleak['data_Run3G'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -74,16 +75,16 @@ weightName = 'weights_data_Run2022EFG.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 #if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/PU_Run2_EFG_updated/mcRun3_130X_2022_realistic_postEE_ele.pu.puTree.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/EFG_2022/mcRun3_130X_2022_realistic_postEE_ele_69p2mb.pu.puTree.root')
 #if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/eos/cms/store/group/phys_egamma/swmukher/UL2017/PU_miniAOD/DY_amcatnloext_ele.pu.puTree.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/PU_Run2_EFG_updated/mcRun3_130X_2022_realistic_postEE_ele.pu.puTree.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/PU/EFG_2022/mcRun3_130X_2022_realistic_postEE_ele_69p2mb.pu.puTree.root')
 
 #############################################################
 ########## bining definition  [can be nD bining]
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,500] },
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
 ]
 
 #############################################################
@@ -92,21 +93,21 @@ biningDef = [
 ### cut
 cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
-additionalCuts = { 
-    0 : 'tag_Ele_Iso122X > 0.90 ',
-    1 : 'tag_Ele_Iso122X > 0.90 ',
-    2 : 'tag_Ele_Iso122X > 0.90 ',
-    3 : 'tag_Ele_Iso122X > 0.90 ',
-    4 : 'tag_Ele_Iso122X > 0.90 ',
-    5 : 'tag_Ele_Iso122X > 0.90 ',
-    6 : 'tag_Ele_Iso122X > 0.90 ',
-    7 : 'tag_Ele_Iso122X > 0.90 ',
-    8 : 'tag_Ele_Iso122X > 0.90 ',
-    9 : 'tag_Ele_Iso122X > 0.90 '
-}
+#additionalCuts = { 
+#    0 : 'tag_Ele_trigMVA > 0.92 ',
+#    1 : 'tag_Ele_trigMVA > 0.92 ',
+#    2 : 'tag_Ele_trigMVA > 0.92 ',
+#    3 : 'tag_Ele_trigMVA > 0.92 ',
+#    4 : 'tag_Ele_trigMVA > 0.92 ',
+#    5 : 'tag_Ele_trigMVA > 0.92 ',
+#    6 : 'tag_Ele_trigMVA > 0.92 ',
+#    7 : 'tag_Ele_trigMVA > 0.92 ',
+#    8 : 'tag_Ele_trigMVA > 0.92 ',
+#    9 : 'tag_Ele_trigMVA > 0.92 '
+#}
 
 #### or remove any additional cut (default)
-#additionalCuts = None
+additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
@@ -119,8 +120,8 @@ tnpParNomFit = [
     ]
 
 tnpParAltSigFit = [
-    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
-    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
+    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[0.697]","sosP[1,0.5,5.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[0.979]","sosF[1,0.5,5.0]",
     "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
     "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
     ]

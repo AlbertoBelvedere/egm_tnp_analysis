@@ -20,13 +20,17 @@ flags = {
     'passingCutBasedMedium122XV1'    : '(passingCutBasedMedium122XV1 == 1)',
     'passingCutBasedTight122XV1'    : '(passingCutBasedTight122XV1 == 1)',
     'passingMVA122Xwp80isoV1'    : '(passingMVA122Xwp80isoV1 == 1)',
+    'passingMVA122Xwp80noisoV1'    : '(passingMVA122Xwp80noisoV1 == 1)',
     'passingMVA122Xwp90isoV1'    : '(passingMVA122Xwp90isoV1 == 1)',
+    'passingMVA122Xwp90noisoV1'    : '(passingMVA122Xwp90noisoV1 == 1)',
     'passingCutBasedVetoRun3V1'    : '(passingCutBasedVetoRun3V1 == 1)',
     'passingCutBasedLooseRun3V1'    : '(passingCutBasedLooseRun3V1 == 1)',
     'passingCutBasedMediumRun3V1'    : '(passingCutBasedMediumRun3V1 == 1)',
     'passingCutBasedTightRun3V1'    : '(passingCutBasedTightRun3V1 == 1)',
     'passingMVARun3Xwp80isoV1'    : '(passingMVARun3Xwp80isoV1 == 1)',
+    'passingMVARun3Xwp80noisoV1'    : '(passingMVARun3Xwp80noisoV1 == 1)',
     'passingMVARun3Xwp90isoV1'    : '(passingMVARun3Xwp90isoV1 == 1)',
+    'passingMVARun3Xwp90noisoV1'    : '(passingMVARun3Xwp90noisoV1 == 1)',
     }
 
 baseOutDir = 'results/2023_post/tnpEleID/'
@@ -65,7 +69,7 @@ if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_mcTruth()
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_mcTruth()
 if not samplesDef['tagSel'] is None:
     samplesDef['tagSel'].rename('mcAltSel_DY_madgraph')
-    samplesDef['tagSel'].set_cut('tag_Ele_pt > 37') #canceled non trig MVA cut
+    samplesDef['tagSel'].set_cut('tag_Ele_pt > 35') #canceled non trig MVA cut
 
 
 ## set MC weight, can use several pileup rw for different data taking periods
@@ -90,7 +94,7 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
+cutBase   = 'tag_Ele_pt > 33 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0 && ( (el_sc_eta>=0 || el_sc_eta<= -1.5) || (el_sc_eta<0 && el_sc_eta>-1.5 && (el_phi>-0.8 || el_phi<-1.2)))'
 
 additionalCuts = { 
     0 : 'tag_Ele_Iso122X > 0.90 ',
