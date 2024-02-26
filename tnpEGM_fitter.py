@@ -143,7 +143,14 @@ if  args.doFit:
     def parallel_fit(ib):
         if (args.binNumber >= 0 and ib == args.binNumber) or args.binNumber < 0:
             if args.altSig and not args.addGaus:
-                tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit )
+                if((ib < 30) & (ib > 19)):
+                    tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit3550 )
+                elif((ib < 40) & (ib > 29)):
+                    tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit50100 )
+                elif((ib < 50) & (ib > 39)):
+                    tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit100500 )
+                else:
+                    tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit )
             elif args.altSig and args.addGaus:
                 tnpRoot.histFitterAltSig(  sampleToFit, tnpBins['bins'][ib], tnpConf.tnpParAltSigFit_addGaus, 1)
             elif args.altBkg:
@@ -197,6 +204,7 @@ if args.sumUp:
         'mcAlt'       : None,
         'tagSel'      : None
         }
+
 
     if not tnpConf.samplesDef['mcAlt' ] is None:
         info['mcAlt'    ] = tnpConf.samplesDef['mcAlt' ].histFile

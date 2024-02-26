@@ -20,7 +20,9 @@ flags = {
     'passingCutBasedMedium122XV1'    : '(passingCutBasedMedium122XV1 == 1)',
     'passingCutBasedTight122XV1'    : '(passingCutBasedTight122XV1 == 1)',
     'passingMVA122Xwp80isoV1'    : '(passingMVA122Xwp80isoV1 == 1)',
+    'passingMVA122Xwp80noisoV1'    : '(passingMVA122Xwp80noisoV1 == 1)',
     'passingMVA122Xwp90isoV1'    : '(passingMVA122Xwp90isoV1 == 1)',
+    'passingMVA122Xwp90noisoV1'    : '(passingMVA122Xwp90noisoV1 == 1)',
     'passingCutBasedVetoRun3V1'    : '(passingCutBasedVetoRun3V1 == 1)',
     'passingCutBasedLooseRun3V1'    : '(passingCutBasedLooseRun3V1 == 1)',
     'passingCutBasedMediumRun3V1'    : '(passingCutBasedMediumRun3V1 == 1)',
@@ -122,11 +124,11 @@ additionalCuts = {
 tnpParNomFit = [
     "meanP[-0.0,-5.0,5.0]","sigmaP[0.9,0,5.0]",
     "meanF[-0.0,-5.0,5.0]","sigmaF[0.9,0,5.0]",
-    "acmsP[60.,30.,100.]","betaP[0.05,0.001,0.08]","gammaP[0.269]","peakP[90.0]",
+    "acmsP[60.,30.,100.]","betaP[0.05,0.001,0.08]","gammaP[0.1, -0.1, 0.1]","peakP[90.0]",
     "acmsF[60.,30,80.]","betaF[0.05,0.001,0.12]","gammaF[0.1, -2, 2]","peakF[90.0]",
     ]
 
-##general
+#general
 tnpParAltSigFit = [
     "meanP[-0.0,-2.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
     "meanF[-0.0,-3.0,5.0]","sigmaF[0.5,0.7,6.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
@@ -134,21 +136,29 @@ tnpParAltSigFit = [
     "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
     ]
 
-##35-50pt
-#tnpParAltSigFit = [
-#    "meanP[0.0, -2.,2.5]","sigmaP[1.5,0.1,3.0]","alphaP[-2.0,-3,0.5]" ,'nP[0.75,0.1,1.5]',"sigmaP_2[1.5,0.1,2.0]","sosP[1,0.01,5.0]",
-#    "meanF[0.0, -2.,2.5]","sigmaF[2,0.1,3.0]","alphaF[-2.0,-3,0.5]",'nF[0.75,0.1,1.5]',"sigmaF_2[2.,0.1,2.0]","sosF[1,0.01,5.0]",
-#    "acmsP[60.,50.,250.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-#    "acmsF[60.,50.,250.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
-#    ]
+#35-50pt
+tnpParAltSigFit3550 = [
+    "meanP[0.0, -2.,2.5]","sigmaP[1.5,0.1,3.0]","alphaP[1.0,0,2.]" ,'nP[0.75,0.1,1.5]',"sigmaP_2[1.5,0.1,2.0]","sosP[1,0.01,5.0]",
+    "meanF[0.0, -2.,2.5]","sigmaF[2,0.1,3.0]","alphaF[1.0,0,2.]",'nF[0.75,0.1,1.5]',"sigmaF_2[2.,0.1,2.0]","sosF[1,0.01,2.0]",
+    "acmsP[60.,50.,75.]","betaP[0.06,0.01,0.06]","gammaP[0.005, 0.001, 0.8]","peakP[90.0]",
+    "acmsF[75.,50.,250.]","betaF[0.06,0.01,0.06]","gammaF[0.005, 0.001, 0.9]","peakF[90.0]",
+    ]
 
-##50-100pt
-#tnpParAltSigFit = [
-#    "meanP[1.0, 0.1,2.5]","sigmaP[1.5,0.1,3.0]","alphaP[-2.0,-3,0.5]" ,'nP[0.75,0.1,1.5]',"sigmaP_2[1.5,0.1,2.0]","sosP[1,0.01,5.0]",
-#    "meanF[1.0, 0.1,2.5]","sigmaF[2,0.1,3.0]","alphaF[-2.0,-3,0.5]",'nF[0.75,0.1,1.5]',"sigmaF_2[2.,0.1,2.0]","sosF[1,0.01,5.0]",
-#    "acmsP[60.,50.,250.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-#    "acmsF[60.,50.,250.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
-#    ]
+#50-100pt
+tnpParAltSigFit50100 = [
+    "meanP[1.0, 0.1,2.5]","sigmaP[1.5,0.1,2.0]","alphaP[-0.8,-1.5,0.5]" ,'nP[0.75,0.1,1.5]',"sigmaP_2[1.5,0.1,2.0]","sosP[1,0.01,5.0]",
+    "meanF[1.0, 0.1,2.5]","sigmaF[1.5,0.1,2.0]","alphaF[-0.8,-1.5,0.5]",'nF[0.75,0.1,1.5]',"sigmaF_2[2.,0.1,2.0]","sosF[1,0.01,3.0]",
+    "acmsP[75.,50.,250.]","betaP[0.06,0.01,0.06]","gammaP[0.005, 0., 1]","peakP[90.0]",
+    "acmsF[75.,50.,250.]","betaF[0.06,0.01,0.06]","gammaF[0.005, 0., 1]","peakF[90.0]",
+    ]
+
+#100-500pt
+tnpParAltSigFit100500 = [
+    "meanP[-0.0,-2.0,3.0]","sigmaP[1,0.7,3.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.,0.5,2.0]","sosP[1,0.5,5.0]",
+    "meanF[-0.0,-3.0,3.0]","sigmaF[0.5,0.7,3.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[1.0,0.5,2.0]","sosF[1,0.5,5.0]",
+    "acmsP[75.,50.,250.]","betaP[0.06,0.01,0.06]","gammaP[0.005, 0., 1]","peakP[90.0]",
+    "acmsF[75.,50.,250.]","betaF[0.036]","gammaF[0.005, 0., 0.1]","peakF[90.0]",
+    ]
 
 tnpParAltSigFit_addGaus = [
     "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
@@ -160,7 +170,7 @@ tnpParAltSigFit_addGaus = [
          
 tnpParAltBkgFit = [
     "meanP[-0.0,-5.0,5.0]","sigmaP[0.9,0.5,5.0]",
-    "meanF[-0.0,-3.0,5.0]","sigmaF[0.9,0.5,3.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[0.9,0.5,3.0]",
     "alphaP[0.,-5.,5.]",
     "alphaF[0.,-5.,5.]",
     ]
